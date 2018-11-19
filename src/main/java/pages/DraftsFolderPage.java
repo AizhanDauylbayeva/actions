@@ -23,10 +23,6 @@ public class DraftsFolderPage extends AbstractPage {
     @FindBy(xpath = "//a[@href='/messages/sent/']")
     private WebElement sentFolderButton;
 
-    public DraftsFolderPage(WebDriver driver) {
-        super(driver);
-    }
-
     private List<WebElement> getAddrList() {
         return addrList;
     }

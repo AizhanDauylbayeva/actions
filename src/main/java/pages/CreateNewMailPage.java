@@ -27,10 +27,6 @@ public class CreateNewMailPage extends AbstractPage {
     @FindBy(xpath = ".//div[@data-name='send']/span")
     private WebElement sendButton;
 
-    public CreateNewMailPage(WebDriver driver) {
-        super(driver);
-    }
-
     public boolean isMailSaved() {
         return savedIdentificator.isDisplayed();
     }

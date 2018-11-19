@@ -17,10 +17,6 @@ public class SentFolderPage extends AbstractPage {
     @FindBy(id = "PH_logoutLink")
     private WebElement logout;
 
-    public SentFolderPage(WebDriver driver) {
-        super(driver);
-    }
-
     private List<Mail> getSentList() {
         List<Mail> results = new ArrayList<Mail>();
         for (WebElement mail : mails) {

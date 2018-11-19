@@ -4,9 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import utils.WebDriverSingleton;
 import pages.*;
 
-public class MailTest extends Base {
+public class MailTest {
     private InboxPage inbox;
     private Mail mail = new Mail("ayzhan7797@mail.ru", "test(module 4.2)", "Hello!");
     private Mail secondMail = new Mail("<Не указано>", "<Без темы>", "-- Name LastName");
@@ -68,9 +69,8 @@ public class MailTest extends Base {
         Assert.assertTrue(sentPage.isSentMailExist(mail), "The sent letter isn't in 'Sent' folder");
     }
 
-    @AfterClass
-    private void tearDown() {
-        sentPage.logout();
-        driver.close();
+    @AfterClass(description = "close browser")
+    public void kill(){
+        WebDriverSingleton.kill();
     }
 }

@@ -11,7 +11,7 @@ public class AbstractPage {
     private static final int WAIT_FOR_ELEMENT_TIMEOUT_SECONDS = 10;
     protected WebDriver driver;
 
-    protected AbstractPage(WebDriver driver) {
+    protected AbstractPage() {
         this.driver = WebDriverSingleton.getWebDriverInstance();
         PageFactory.initElements(driver, this);
     }

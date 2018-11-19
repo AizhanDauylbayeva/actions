@@ -18,10 +18,6 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//*[@id='mailbox:domain']/option[4]")
     private WebElement domain;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
-
     public HomePage open() {
         driver.get("https://mail.ru");
         return this;
