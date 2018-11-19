@@ -17,7 +17,8 @@ public class InboxPage extends AbstractPage {
         return userEmailIdentificator.isDisplayed();
     }
 
-    public void openWriteNewMail() {
+    public InboxPage openWriteNewMail() {
         createNewMailButton.click();
+        return this;
     }
 }

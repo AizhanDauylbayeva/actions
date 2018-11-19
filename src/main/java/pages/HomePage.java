@@ -40,6 +40,6 @@ public class HomePage extends AbstractPage {
 
     public InboxPage signIn() {
         signInButton.click();
-        return new InboxPage(driver);
+        return new InboxPage();
     }
 }

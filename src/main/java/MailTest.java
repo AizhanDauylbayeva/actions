@@ -18,15 +18,15 @@ public class MailTest {
 
     @BeforeClass
     private void init() {
-        inbox = new InboxPage(driver);
-        newMailPage = new CreateNewMailPage(driver);
-        draftsFolderPage = new DraftsFolderPage(driver);
-        sentPage = new SentFolderPage(driver);
+        inbox = new InboxPage();
+        newMailPage = new CreateNewMailPage();
+        draftsFolderPage = new DraftsFolderPage();
+        sentPage = new SentFolderPage();
     }
 
     @Test(description = "Login test")
     public void loginTest() {
-        inbox = new HomePage(driver).open().fillUsername(user.getUsername()).fillPassword(user.getPass()).chooseDomain().signIn();
+        inbox = new HomePage().open().fillUsername(user.getUsername()).fillPassword(user.getPass()).chooseDomain().signIn();
         Assert.assertTrue(inbox.isUserSignIn(), "Authentication failed");
     }
 
@@ -43,7 +43,7 @@ public class MailTest {
     @Test(dependsOnMethods = "saveNewMailTest")
     public void testContent() {
         newMailPage.openDraftsFolder();
-        driver.navigate().refresh();
+        WebDriverSingleton.getWebDriverInstance().navigate().refresh();
         Assert.assertTrue(draftsFolderPage.isSavedMailExist(mail), "The draft content isn't the same as in mail");
     }
 
@@ -55,17 +55,17 @@ public class MailTest {
     @Test(dependsOnMethods = "testSecondMail")
     public void sendMailTest() {
         draftsFolderPage.openMail(mail);
-        driver.navigate().refresh();
+        WebDriverSingleton.getWebDriverInstance().navigate().refresh();
         newMailPage.sendMail();
         draftsFolderPage.openDraftsFolder();
-        driver.navigate().refresh();
+        WebDriverSingleton.getWebDriverInstance().navigate().refresh();
         Assert.assertFalse(draftsFolderPage.isSavedMailExist(mail), "The mail didn't disappear from 'Drafts' folder");
     }
 
     @Test(dependsOnMethods = "sendMailTest")
     public void sentFolderTest() {
         draftsFolderPage.openSentFolder();
-        driver.navigate().refresh();
+        WebDriverSingleton.getWebDriverInstance().navigate().refresh();
         Assert.assertTrue(sentPage.isSentMailExist(mail), "The sent letter isn't in 'Sent' folder");
     }
 
