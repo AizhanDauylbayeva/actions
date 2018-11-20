@@ -69,7 +69,7 @@ public class MailTest {
         Assert.assertTrue(sentPage.isSentMailExist(mail), "The sent letter isn't in 'Sent' folder");
     }
 
-    @AfterClass(description = "close browser")
+    @AfterClass(description = "closePanel browser")
     public void kill(){
         WebDriverSingleton.kill();
     }
