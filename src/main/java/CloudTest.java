@@ -11,22 +11,35 @@ import utils.WebDriverSingleton;
 
 public class CloudTest {
     private InboxPage inbox;
+    private CloudPage cloudPage;
+    private NewFolderCloudPage newFolderPage;
     private User user = new User("new_account_2018", "password2018");
 
     @Test(description = "Login test")
     public void loginTest() {
         inbox = new HomePage().open().fillUsername(user.getUsername()).fillPassword(user.getPass()).chooseDomain().signIn();
-    //    Assert.assertTrue(inbox.isUserSignIn(), "Authentication failed");
+      //  Assert.assertTrue(inbox.isUserSignedIn(), "Authentication failed");
     }
 
     @Test(dependsOnMethods = "loginTest")
     public void dragNDropImageTest(){
-        CloudPage cloudPage = inbox.openCloudPage();
+        cloudPage = inbox.openCloudPage();
         cloudPage.closePanel();
-        cloudPage.dragAndDrop();
-        cloudPage.moveToFolder();
-        NewFolderCloudPage newfolderpage = new NewFolderCloudPage();
-        //Assert.assertTrue(cloudPage.isImageMoved(newfolderpage));
+        cloudPage.dragAndDrop().moveToFolder();
+    }
+
+    @Test(dependsOnMethods = "dragNDropImageTest")
+    public void doubleClickTest() {
+        newFolderPage = cloudPage.moveMouseToNewFolder().doubleClick();
+        Assert.assertEquals(newFolderPage.getTitle(), "New folder / Облако Mail.Ru");
+    }
+
+    @Test(dependsOnMethods = "doubleClickTest")
+    public void openNewTabByContextMenuTest() {
+        newFolderPage.contextClick();
+        //newFolderPage.openNewTab();
+//        newFolderPage.switchTab();
+//        Assert.assertEquals(newFolderPage.getTitle(), "Облако Mail.Ru");
     }
 
     @AfterClass(description = "closePanel browser")

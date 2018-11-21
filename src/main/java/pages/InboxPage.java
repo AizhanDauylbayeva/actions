@@ -16,7 +16,7 @@ public class InboxPage extends AbstractPage {
     @FindBy(xpath = "//span[@class='js-text-inner pm-toolbar__button__text__inner' and contains(string(), 'Облако')]")
     private WebElement cloudButton;
 
-    public boolean isUserSignIn() {
+    public boolean isUserSignedIn() {
         waitForElementVisible(userEmailIdentificator);
         return userEmailIdentificator.isDisplayed();
     }

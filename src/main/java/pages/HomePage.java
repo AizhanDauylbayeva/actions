@@ -19,6 +19,11 @@ public class HomePage extends AbstractPage {
 
     public HomePage open() {
         driver.get("https://mail.ru");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 

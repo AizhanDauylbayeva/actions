@@ -27,7 +27,7 @@ public class MailTest {
     @Test(description = "Login test")
     public void loginTest() {
         inbox = new HomePage().open().fillUsername(user.getUsername()).fillPassword(user.getPass()).chooseDomain().signIn();
-        Assert.assertTrue(inbox.isUserSignIn(), "Authentication failed");
+        Assert.assertTrue(inbox.isUserSignedIn(), "Authentication failed");
     }
 
     @Test(dependsOnMethods = "loginTest")
