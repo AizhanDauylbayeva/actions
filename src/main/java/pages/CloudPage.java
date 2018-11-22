@@ -23,9 +23,6 @@ public class CloudPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='b-panel__close__icon']")
     private WebElement closepanel;
 
-//    @FindBy(xpath = "b-file-folder-count breadcrumbs__file-folder-count")
-//    private WebElement fileCount;
-
     public void closePanel() {
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", closepanel);
@@ -40,12 +37,11 @@ public class CloudPage extends AbstractPage {
         return this;
     }
 
-    public CloudPage moveToFolder() {
+    public void clickMoveToFolder() {
         highlightElement(moveButton);
         waitForElementEnabled(moveButton);
         unHighlightElement(moveButton);
         moveButton.click();
-        return this;
     }
 
     public CloudPage moveMouseToNewFolder() {
@@ -59,8 +55,4 @@ public class CloudPage extends AbstractPage {
         return new NewFolderCloudPage();
     }
 
-/*    public boolean isImageMoved(NewFolderCloudPage newPage){
-        newFolder.click();
-        return getImagesList().get(0).equals(newPage.getImagesNewFolder().get(0));
-    }*/
 }

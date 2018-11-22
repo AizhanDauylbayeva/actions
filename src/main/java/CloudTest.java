@@ -6,7 +6,6 @@ import pages.CloudPage;
 import pages.HomePage;
 import pages.InboxPage;
 import pages.NewFolderCloudPage;
-import utils.Screenshoter;
 import utils.WebDriverSingleton;
 
 public class CloudTest {
@@ -18,14 +17,14 @@ public class CloudTest {
     @Test(description = "Login test")
     public void loginTest() {
         inbox = new HomePage().open().fillUsername(user.getUsername()).fillPassword(user.getPass()).chooseDomain().signIn();
-      //  Assert.assertTrue(inbox.isUserSignedIn(), "Authentication failed");
+        //Assert.assertTrue(inbox.isUserSignedIn(), "Authentication failed");
     }
 
     @Test(dependsOnMethods = "loginTest")
-    public void dragNDropImageTest(){
+    public void dragNDropImageTest() {
         cloudPage = inbox.openCloudPage();
         cloudPage.closePanel();
-        cloudPage.dragAndDrop().moveToFolder();
+        //cloudPage.dragAndDrop().clickMoveToFolder();
     }
 
     @Test(dependsOnMethods = "dragNDropImageTest")
@@ -35,15 +34,13 @@ public class CloudTest {
     }
 
     @Test(dependsOnMethods = "doubleClickTest")
-    public void openNewTabByContextMenuTest() {
-        newFolderPage.contextClick();
-        //newFolderPage.openNewTab();
-//        newFolderPage.switchTab();
-//        Assert.assertEquals(newFolderPage.getTitle(), "Облако Mail.Ru");
+    public void openImagesTest() {
+        newFolderPage.openImageAndSwitch();
+        Assert.assertTrue(newFolderPage.getTitle().contains(newFolderPage.getImageName()));
     }
 
     @AfterClass(description = "closePanel browser")
-    public void kill(){
+    public void kill() {
         WebDriverSingleton.kill();
     }
 }

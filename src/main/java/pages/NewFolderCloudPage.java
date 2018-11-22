@@ -9,7 +9,7 @@ import utils.WebDriverSingleton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewFolderCloudPage extends AbstractPage{
+public class NewFolderCloudPage extends AbstractPage {
     private Actions action = new Actions(driver);
 
     @FindBy(xpath = "//a[@class='js-href breadcrumbs__item__link']")
@@ -25,35 +25,29 @@ public class NewFolderCloudPage extends AbstractPage{
         return imagesList;
     }
 
-    public String getTitle(){
+
+    public String getTitle() {
         return WebDriverSingleton.getWebDriverInstance().getTitle();
     }
 
-    public void switchTab(){
-        action
-                .keyDown(Keys.CONTROL)
-                .sendKeys(Keys.TAB)
-                .build()
-                .perform();
-    }
-
-    public void contextClick(){
+    public void openImageAndSwitch() {
         closeContainer.click();
         highlightElement(cloudLink);
-        action.moveToElement(cloudLink).perform();
+        action.click(cloudLink).perform();
         action
-                .contextClick()
-        .moveByOffset(5,-19)
+                .moveToElement(getImagesNewFolder().get(0))
                 .click()
-//                .sendKeys(Keys.ARROW_DOWN)
-//                .sendKeys(Keys.ENTER)
+                .sendKeys(Keys.ARROW_RIGHT)
                 .build()
                 .perform();
-        unHighlightElement(cloudLink);
     }
 
-    public CloudPage openNewTab(){
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+    public String getImageName(){
+        return getImagesNewFolder().get(1).getTagName();
+    }
+
+    public CloudPage openNewTab() {
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(2));
         return new CloudPage();
     }
