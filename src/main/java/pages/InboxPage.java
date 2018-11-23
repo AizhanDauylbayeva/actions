@@ -26,9 +26,9 @@ public class InboxPage extends AbstractPage {
         return this;
     }
 
-    public CloudPage openCloudPage(){
+    public CloudPage openCloudPage() {
         cloudButton.click();
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         return new CloudPage();
     }
