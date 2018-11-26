@@ -1,5 +1,6 @@
 package pages;
 
+import bonus.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,6 +19,7 @@ public class HomePage extends AbstractPage {
     private WebElement domain;
 
     public HomePage open() {
+        Logger.info("Going to URL: " + "https://mail.ru");
         driver.get("https://mail.ru");
         try {
             Thread.sleep(5000);
