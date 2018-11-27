@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -23,8 +24,8 @@ public class WebDriverSingleton {
     }
 
     private static WebDriver init() {
-  /*      System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();*/
+        /*System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+        WebDriver driver = new FirefoxDriver();*/
         WebDriver driver = null;
         try {
             driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), DesiredCapabilities.firefox());
