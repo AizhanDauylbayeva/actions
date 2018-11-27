@@ -24,15 +24,15 @@ public class WebDriverSingleton {
     }
 
     private static WebDriver init() {
-        /*System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-        WebDriver driver = new FirefoxDriver();*/
-        WebDriver driver = null;
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+        WebDriver driver = new FirefoxDriver();
+        /*WebDriver driver = null;
         try {
             driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), DesiredCapabilities.firefox());
         } catch (MalformedURLException e) {
             //Logger.error("Error with creating URL");
             e.printStackTrace();
-        }
+        }*/
         driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
